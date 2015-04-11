@@ -1,6 +1,8 @@
-(function (window) {
-	'use strict';
+window.art = {
+	model: {},
+	service: {},
+	view: {}
+};
 
-	// Your starting point. Enjoy the ride!
-
-})(window);
+artjs.TemplateLibrary.config.PATH = 'templates';
+artjs.TemplateLibrary.config.TEMPLATES.push('item');

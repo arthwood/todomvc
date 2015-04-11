@@ -1,8 +1,16 @@
-/*
-
-app-template.css overrides
-
-remove this comment if used
-remove this file if not
-
-*/
+label[for='toggle-all'] {
+	display: inline;
+}
+.todoapp {
+	margin-top: 80px;
+}
+.todoapp h1 {
+	font-size: 60px;
+	top: -100px;
+}
+.main {
+	padding: 10px;
+}
+p {
+	margin: 0;
+}
