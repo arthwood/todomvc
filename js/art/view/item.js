@@ -4,14 +4,20 @@ art.view.Item = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		artjs.on('click', element, this._onEdit.delegate);
-
+		this._handleEmit('Item::DblClick', '_onEdit');
 		this._handleEmit('Item::Save', '_onSave');
 		this._handleEmit('Item::Button::Delete', '_onDelete');
+		this._handleEmit('Item::Complete', '_onComplete');
 
 		this._editing = false;
 	},
 	{
+		setModel: function(model) {
+			this.super(model);
+
+			this._model.addPropertyListener('completed', this._onCompletedChange.delegate);
+		},
+
 		_onEdit: function() {
 			if (!this._editing) {
 				this._editing = true;
@@ -36,10 +42,19 @@ art.view.Item = artjs.Class(
 			if (artjs.String.isPresent(value)) {
 				this._model.value = value;
 			}
+		},
+
+		_onComplete: function(checkbox) {
+			this._model.completed = checkbox.isChecked();
+		},
+
+		_onCompletedChange: function(data) {
+			artjs.Element.setClass(this._element, this.ctor.COMPLETED_CLASS, data.newValue);
 		}
 	},
 	{
 		EDITING_CLASS: 'editing',
+		COMPLETED_CLASS: 'completed',
 
 		_name: 'art.view.Item'
 	},

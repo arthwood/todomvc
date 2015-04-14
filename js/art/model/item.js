@@ -1,10 +1,10 @@
 art.model.Item = artjs.Class(
-	function(value) {
+	function(value, completed) {
 		this.super();
 
-		this.addProperty('value', value);
+		this.addProperties({value: value, completed: Boolean(completed)});
 	},
 	null,
 	null,
-	artjs.Model
+	artjs.ListItemModel
 );

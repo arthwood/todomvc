@@ -2,19 +2,30 @@ art.view.Count = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		this._model.addProperty('n');
+		var model = new artjs.Model();
 
-		this._register({
-			'todo-list': '_onTodoListLoad'
-		});
+		model.addProperty('n');
+
+		this.setModel(model);
+
+		artjs.ListListener.create(this, 'todo-list', this._onItemsChange.delegate);
 	},
 	{
-		_onTodoListLoad: function(todoList) {
-			todoList.getModel().addPropertyListener('items', this._onItemsChange.delegate);
+		_onItemsChange: function(data) {
+			this._update(data.newValue);
 		},
 
-		_onItemsChange: function(values) {
-			this._model.n = values.newValue.length;
+		_onListItemChange: function(list) {
+			this._update(list.getModel().items);
+		},
+
+		_update: function(items) {
+			var total = items.length;
+			var completed = artjs.Array.select(artjs.Array.pluck(items, 'completed')).length;
+
+			this._model.n = total - completed;
+
+			this._fire('Item::Count');
 		}
 	},
 	{
