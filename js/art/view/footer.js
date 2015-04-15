@@ -2,11 +2,11 @@ art.view.Footer = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		this._handle('Item::Count', '_onCount');
+		this._handle('Items::Change', '_onItemsChange');
 	},
 	{
-		_onCount: function(count) {
-			artjs.Element.setVisible(this._element, count.getModel().n > 0);
+		_onItemsChange: function(list) {
+			artjs.Element.setVisible(this._element, artjs.Array.isNotEmpty(list.getModel().items));
 		}
 	},
 	{

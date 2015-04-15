@@ -24,8 +24,6 @@ art.view.Count = artjs.Class(
 			var completed = artjs.Array.select(artjs.Array.pluck(items, 'completed')).length;
 
 			this._model.n = total - completed;
-
-			this._fire('Item::Count');
 		}
 	},
 	{
