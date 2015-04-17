@@ -1,8 +1,1 @@
-window.art = {
-	model: {},
-	service: {},
-	view: {}
-};
-
-artjs.TemplateLibrary.config.PATH = 'templates';
-artjs.TemplateLibrary.config.TEMPLATES.push('item');
+artjs.Router.defaultController = new art.controller.Main();

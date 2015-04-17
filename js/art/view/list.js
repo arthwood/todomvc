@@ -2,6 +2,8 @@ art.view.List = artjs.Class(
 	function(element) {
 		this.super(element);
 
+		artjs.Broadcaster.addListener('Filter', this._onFilter.delegate);
+
 		this._handle('Todo::New', '_onNew');
 		this._handle('MarkAllComplete', '_onMarkAllComplete');
 		this._handle('ClearCompleted', '_onClearCompleted');
@@ -42,10 +44,33 @@ art.view.List = artjs.Class(
 
 		_isCompleted: function(item) {
 			return item.completed;
+		},
+
+		_isActive: function(item) {
+			return !item.completed;
+		},
+
+		_true: function() {
+			return true;
+		},
+
+		_onFilter: function(id) {
+			this._visibilityStrategy = this.ctor.VISIBILITY_STRATEGIES[id] || '_true';
+
+			artjs.Array.each(this._model.items, this._setItemVisibility, this);
+		},
+
+		_setItemVisibility: function(item) {
+			item.visible = this[this._visibilityStrategy](item);
 		}
 	},
 	{
-		_name: 'art.view.List'
+		_name: 'art.view.List',
+
+		VISIBILITY_STRATEGIES: {
+			completed: '_isCompleted',
+			active: '_isActive'
+		}
 	},
 	artjs.ListView
 );

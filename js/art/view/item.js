@@ -16,6 +16,7 @@ art.view.Item = artjs.Class(
 			this.super(model);
 
 			this._model.addPropertyListener('completed', this._onCompletedChange.delegate);
+			this._model.addPropertyListener('visible', this._onVisibleChange.delegate);
 		},
 
 		_onEdit: function() {
@@ -50,6 +51,10 @@ art.view.Item = artjs.Class(
 
 		_onCompletedChange: function(data) {
 			artjs.Element.setClass(this._element, this.ctor.COMPLETED_CLASS, data.newValue);
+		},
+
+		_onVisibleChange: function(data) {
+			artjs.Element.setVisible(this._element, data.newValue);
 		}
 	},
 	{

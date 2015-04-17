@@ -7,7 +7,8 @@
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 		<link rel="stylesheet" href="css/app.css">
 		<script src="js/art-dev.js" type="application/javascript"></script>
-		<script src="js/app.js" type="application/javascript"></script>
+		<script src="js/init.js" type="application/javascript"></script>
+		<script src="js/art/controller/main.js" type="application/javascript"></script>
 		<script src="js/art/model/item.js" type="application/javascript"></script>
 		<script src="js/art/service/db.js" type="application/javascript"></script>
 		<script src="js/art/view/count.js" type="application/javascript"></script>
@@ -18,6 +19,7 @@
 		<script src="js/art/view/list.js" type="application/javascript"></script>
 		<script src="js/art/view/mark_all_complete.js" type="application/javascript"></script>
 		<script src="js/art/view/new.js" type="application/javascript"></script>
+		<script src="js/app.js" type="application/javascript"></script>
 	</head>
 	<body>
 		<section class="todoapp">
@@ -40,13 +42,13 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						<a href="#/">All</a>
+						<a href="#/" class="art artjs-Link">All</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a href="#/active" class="art artjs-Link">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a href="#/completed" class="art artjs-Link">Completed</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->
