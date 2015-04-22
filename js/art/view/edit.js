@@ -2,8 +2,8 @@ art.view.Edit = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		artjs.on('blur', element, this._onBlur.delegate);
-		artjs.on('keydown', element, this._onEnter.delegate, 13);
+		artjs.on('blur', element, artjs.$D(this, '_onBlur'));
+		artjs.on('keydown', element, artjs.$D(this, '_onEnter'), 13);
 
 		this._handleBroadcast('Item::Edit', '_onEdit');
 	},

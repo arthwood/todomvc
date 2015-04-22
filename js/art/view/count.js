@@ -8,15 +8,17 @@ art.view.Count = artjs.Class(
 
 		this.setModel(model);
 
-		artjs.ListListener.create(this, 'todo-list', this._onItemsChange.delegate);
+		this._onItemsChangeDelegate = artjs.$D(this, '_onItemsChange');
+
+		artjs.Component.onLoad('todo-list', artjs.$D(this, '_onListLoad'));
 	},
 	{
+		_onListLoad: function(list) {
+      list.getModel().addPropertyListener('items', this._onItemsChangeDelegate);
+    },
+
 		_onItemsChange: function(data) {
 			this._update(data.newValue);
-		},
-
-		_onListItemChange: function(list) {
-			this._update(list.getModel().items);
 		},
 
 		_update: function(items) {

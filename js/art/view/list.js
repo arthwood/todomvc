@@ -2,7 +2,7 @@ art.view.List = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		artjs.Broadcaster.addListener('Filter', this._onFilter.delegate);
+		artjs.Broadcaster.addListener('Filter', artjs.$D(this, '_onFilter'));
 
 		this._handle('Todo::New', '_onNew');
 		this._handle('MarkAllComplete', '_onMarkAllComplete');

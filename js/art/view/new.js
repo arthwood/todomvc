@@ -2,7 +2,7 @@ art.view.New = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		artjs.on('keydown', element, this._onEnter.delegate, 13);
+		artjs.on('keydown', element, artjs.$D(this, '_onEnter'), 13);
 	},
 	{
 		_onEnter: function() {

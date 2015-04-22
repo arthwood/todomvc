@@ -10,13 +10,16 @@ art.view.Item = artjs.Class(
 		this._handleEmit('Item::Complete', '_onComplete');
 
 		this._editing = false;
+
+		this._onCompletedChangeDelegate = artjs.$D(this, '_onCompletedChange');
+		this._onVisibleChangeDelegate = artjs.$D(this, '_onVisibleChange');
 	},
 	{
 		setModel: function(model) {
 			this.super(model);
 
-			this._model.addPropertyListener('completed', this._onCompletedChange.delegate);
-			this._model.addPropertyListener('visible', this._onVisibleChange.delegate);
+			this._model.addPropertyListener('completed', this._onCompletedChangeDelegate);
+			this._model.addPropertyListener('visible', this._onVisibleChangeDelegate);
 		},
 
 		_onEdit: function() {
