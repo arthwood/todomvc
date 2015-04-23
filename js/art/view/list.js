@@ -2,7 +2,9 @@ art.view.List = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		artjs.Broadcaster.addListener('Filter', artjs.$D(this, '_onFilter'));
+		this._onFilterDelegate = artjs.$D(this, '_onFilter');
+
+		artjs.Broadcaster.addListener('Filter', this._onFilterDelegate);
 
 		this._handle('Todo::New', '_onNew');
 		this._handle('MarkAllComplete', '_onMarkAllComplete');
@@ -62,6 +64,10 @@ art.view.List = artjs.Class(
 
 		_setItemVisibility: function(item) {
 			item.visible = this[this._visibilityStrategy](item);
+		},
+
+		_destroy: function() {
+			artjs.Broadcaster.removeListener('Filter', this._onFilterDelegate);
 		}
 	},
 	{

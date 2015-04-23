@@ -58,6 +58,13 @@ art.view.Item = artjs.Class(
 
 		_onVisibleChange: function(data) {
 			artjs.Element.setVisible(this._element, data.newValue);
+		},
+
+		_destroy: function() {
+			this.super();
+
+			this._model.removePropertyListener('completed', this._onCompletedChangeDelegate);
+			this._model.removePropertyListener('visible', this._onVisibleChangeDelegate);
 		}
 	},
 	{
