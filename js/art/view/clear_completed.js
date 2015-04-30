@@ -1,12 +1,6 @@
-art.view.Count = artjs.Class(
+art.view.ClearCompleted = artjs.Class(
 	function(element) {
 		this.super(element);
-
-		var model = new artjs.Model();
-
-		model.addProperty('n');
-
-		this.setModel(model);
 
 		artjs.Component.onLoad('todo-list', artjs.$D(this, '_onListLoad'));
 	},
@@ -28,14 +22,12 @@ art.view.Count = artjs.Class(
 
 		_update: function() {
 			var items = this._listModel.items;
-			var total = items.length;
-			var completed = artjs.Array.select(artjs.Array.pluck(items, 'completed')).length;
 
-			this._model.n = total - completed;
+			artjs.Element.setVisible(this._element, artjs.Array.any(artjs.Array.pluck(items, 'completed')));
 		}
 	},
 	{
-		_name: 'art.view.Count'
+		_name: 'art.view.ClearCompleted'
 	},
-	artjs.TemplateView
+	artjs.Button
 );

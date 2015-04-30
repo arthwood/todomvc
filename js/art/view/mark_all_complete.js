@@ -2,16 +2,16 @@ art.view.MarkAllComplete = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		this._onItemsChangeDelegate = artjs.$D(this, '_onItemsChange');
 		artjs.Component.onLoad('todo-list', artjs.$D(this, '_onListLoad'));
 	},
 	{
 		_onListLoad: function(list) {
-      list.getModel().addPropertyListener('items', this._onItemsChangeDelegate);
-    },
+			this._listModel = list.getModel();
+			this._listModel.onItemChange.add(artjs.$D(this, '_onItemChange'));
+		},
 
-		_onItemsChange: function(data) {
-			this._update(data.newValue);
+		_onItemChange: function() {
+			this._update(this._listModel.items);
 		},
 
 		_update: function(items) {
@@ -21,9 +21,7 @@ art.view.MarkAllComplete = artjs.Class(
 		}
 	},
 	{
-		toString: function() {
-			return 'art.view.MarkAllComplete';
-		}
+		_name: 'art.view.MarkAllComplete'
 	},
 	artjs.CheckBox
 );

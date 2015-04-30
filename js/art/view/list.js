@@ -2,32 +2,47 @@ art.view.List = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		this._onFilterDelegate = artjs.$D(this, '_onFilter');
+		this._localStorage = new artjs.LocalStorage('todos-artjs');
 
-		artjs.Broadcaster.addListener('Filter', this._onFilterDelegate);
+		this._model.onItemChange.add(artjs.$D(this, '_onItemChange'));
+		this._model.addPropertyListener('items', artjs.$D(this, '_onItemsChange'));
+
+		artjs.Broadcaster.addListener('Filter', artjs.$D(this, '_onFilter'));
 
 		this._handle('Todo::New', '_onNew');
 		this._handle('MarkAllComplete', '_onMarkAllComplete');
 		this._handle('ClearCompleted', '_onClearCompleted');
 		this._handleEmit('Item::Delete', '_onDelete');
 
-		this.setItems(art.service.db.items);
-
-		this._fire('Items::Change');
+		this.setItems(art.model.Item.fromArray(this._localStorage.getItem('items') || art.service.db.items));
 	},
 	{
 		_onNew: function(text) {
 			var value = text.getValue();
 
 			this.addItem(new art.model.Item(value));
-
-			this._fire('Items::Change');
 		},
 
 		_onDelete: function(item) {
 			this.removeItem(item.getModel());
+		},
 
-			this._fire('Items::Change');
+		_onItemChange: function() {
+			this._storeItems();
+		},
+
+		_onItemsChange: function() {
+			this._storeItems();
+		},
+
+		_storeItems: function() {
+			var items = this._model.items;
+
+			if (!artjs.Object.isNull(items)) {
+				items = artjs.Array.invoke(items, 'toJson');
+			}
+
+			this._localStorage.setItem('items', items);
 		},
 
 		_onMarkAllComplete: function(checkbox) {
@@ -64,10 +79,6 @@ art.view.List = artjs.Class(
 
 		_setItemVisibility: function(item) {
 			item.visible = this[this._visibilityStrategy](item);
-		},
-
-		_destroy: function() {
-			artjs.Broadcaster.removeListener('Filter', this._onFilterDelegate);
 		}
 	},
 	{

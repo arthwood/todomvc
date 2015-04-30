@@ -11,6 +11,7 @@
 		<script src="js/art/controller/main.js" type="application/javascript"></script>
 		<script src="js/art/model/item.js" type="application/javascript"></script>
 		<script src="js/art/service/db.js" type="application/javascript"></script>
+		<script src="js/art/view/clear_completed.js" type="application/javascript"></script>
 		<script src="js/art/view/count.js" type="application/javascript"></script>
 		<script src="js/art/view/edit.js" type="application/javascript"></script>
 		<script src="js/art/view/footer.js" type="application/javascript"></script>
@@ -18,6 +19,7 @@
 		<script src="js/art/view/item_label.js" type="application/javascript"></script>
 		<script src="js/art/view/list.js" type="application/javascript"></script>
 		<script src="js/art/view/mark_all_complete.js" type="application/javascript"></script>
+		<script src="js/art/view/main.js" type="application/javascript"></script>
 		<script src="js/art/view/new.js" type="application/javascript"></script>
 		<script src="js/app.js" type="application/javascript"></script>
 	</head>
@@ -27,7 +29,6 @@
 				<h1>todos</h1>
 				<input class="art art-view-New new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
-			<!-- This section should be hidden by default and shown when there are todos -->
 			<section class="art art-view-Main main">
 				<p class="mark-as-complete">
 					<input class="art art-view-MarkAllComplete" data-event="MarkAllComplete" id="toggle-all" type="checkbox">
@@ -35,11 +36,8 @@
 				</p>
 				<ul id="todo-list" class="art art-view-List todo-list" data-template="item" data-item-class="art-view-Item"></ul>
 			</section>
-			<!-- This footer should hidden by default and shown when there are todos -->
 			<footer class="footer art art-view-Footer">
-				<!-- This should be `0 items left` by default -->
-				<span class="art art-view-Count todo-count"><strong>{{n}}</strong> item left</span>
-				<!-- Remove this if you don't implement routing -->
+				<span class="art art-view-Count todo-count"><strong>{{n}}</strong> {{pluralize(n, 'item')}} left</span>
 				<ul class="filters">
 					<li>
 						<a href="#/" class="art artjs-Link">All</a>
@@ -51,13 +49,11 @@
 						<a href="#/completed" class="art artjs-Link">Completed</a>
 					</li>
 				</ul>
-				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed art artjs-Button" data-event="ClearCompleted">Clear completed</button>
+				<button class="clear-completed art art-view-ClearCompleted" data-event="ClearCompleted">Clear completed</button>
 			</footer>
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
-			<!-- Change this out with your name and url ↓ -->
 			<p>Created by <a href="http://artjs.org">ArtJS</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>

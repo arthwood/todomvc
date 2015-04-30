@@ -4,7 +4,22 @@ art.model.Item = artjs.Class(
 
 		this.addProperties({value: value, completed: Boolean(completed), visible: true});
 	},
-	null,
-	null,
+	{
+		toJson: function() {
+			return {
+				title: this.value,
+				completed: this.completed
+			}
+		}
+	},
+	{
+		fromJson: function(data) {
+			return new this(data.title, Boolean(data.completed));
+		},
+
+		fromArray: function(data) {
+			return artjs.Array.map(data, this.fromJson, this);
+		}
+	},
 	artjs.ListItemModel
 );

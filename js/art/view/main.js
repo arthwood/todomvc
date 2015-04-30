@@ -1,4 +1,4 @@
-art.view.Footer = artjs.Class(
+art.view.Main = artjs.Class(
 	function(element) {
 		this.super(element);
 
@@ -16,7 +16,7 @@ art.view.Footer = artjs.Class(
 		}
 	},
 	{
-		_name: 'art.view.Footer'
+		_name: 'art.view.Main'
 	},
-	artjs.Component
+	artjs.View
 );

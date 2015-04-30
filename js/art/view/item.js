@@ -1,5 +1,3 @@
-//These are here just to show the structure of the list items
-//List items should get the class `editing` when editing and `completed` when marked as completed
 art.view.Item = artjs.Class(
 	function(element) {
 		this.super(element);
@@ -18,7 +16,7 @@ art.view.Item = artjs.Class(
 		setModel: function(model) {
 			this.super(model);
 
-			this._model.addPropertyListener('completed', this._onCompletedChangeDelegate);
+			this._model.addPropertyListener('completed', this._onCompletedChangeDelegate, true);
 			this._model.addPropertyListener('visible', this._onVisibleChangeDelegate);
 		},
 
@@ -58,13 +56,6 @@ art.view.Item = artjs.Class(
 
 		_onVisibleChange: function(data) {
 			artjs.Element.setVisible(this._element, data.newValue);
-		},
-
-		_destroy: function() {
-			this.super();
-
-			this._model.removePropertyListener('completed', this._onCompletedChangeDelegate);
-			this._model.removePropertyListener('visible', this._onVisibleChangeDelegate);
 		}
 	},
 	{
