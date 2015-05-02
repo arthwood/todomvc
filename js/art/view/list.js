@@ -3,10 +3,9 @@ art.view.List = artjs.Class(
 		this.super(element);
 
 		this._localStorage = new artjs.LocalStorage('todos-artjs');
-
+		this._listWatcher = new art.service.ListWatcher(this);
+		this._model.onItemAdd.add(artjs.$D(this, '_onItemAdd'));
 		this._model.onItemChange.add(artjs.$D(this, '_onItemChange'));
-		this._model.addPropertyListener('items', artjs.$D(this, '_onItemsChange'));
-
 		artjs.Broadcaster.addListener('Filter', artjs.$D(this, '_onFilter'));
 
 		this._handle('Todo::New', '_onNew');
@@ -27,15 +26,7 @@ art.view.List = artjs.Class(
 			this.removeItem(item.getModel());
 		},
 
-		_onItemChange: function() {
-			this._storeItems();
-		},
-
-		_onItemsChange: function() {
-			this._storeItems();
-		},
-
-		_storeItems: function() {
+		update: function() {
 			var items = this._model.items;
 
 			if (!artjs.Object.isNull(items)) {
@@ -71,9 +62,22 @@ art.view.List = artjs.Class(
 			return true;
 		},
 
+		_onItemChange: function(model, item, property) {
+			if (property == 'completed') {
+				this._setItemVisibility(item);
+			}
+		},
+
+		_onItemAdd: function(model, item) {
+			this._setItemVisibility(item);
+		},
+
 		_onFilter: function(id) {
 			this._visibilityStrategy = this.ctor.VISIBILITY_STRATEGIES[id] || '_true';
+			this._filter();
+		},
 
+		_filter: function() {
 			artjs.Array.each(this._model.items, this._setItemVisibility, this);
 		},
 

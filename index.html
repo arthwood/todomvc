@@ -5,15 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Template • TodoMVC</title>
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-		<link rel="stylesheet" href="css/app.css">
+		<!--<link rel="stylesheet" href="css/app.css">-->
 		<script src="js/art-dev.js" type="application/javascript"></script>
 		<script src="js/init.js" type="application/javascript"></script>
 		<script src="js/art/controller/main.js" type="application/javascript"></script>
 		<script src="js/art/model/item.js" type="application/javascript"></script>
 		<script src="js/art/service/db.js" type="application/javascript"></script>
+		<script src="js/art/service/list_watcher.js" type="application/javascript"></script>
 		<script src="js/art/view/clear_completed.js" type="application/javascript"></script>
 		<script src="js/art/view/count.js" type="application/javascript"></script>
 		<script src="js/art/view/edit.js" type="application/javascript"></script>
+		<script src="js/art/view/filter.js" type="application/javascript"></script>
 		<script src="js/art/view/footer.js" type="application/javascript"></script>
 		<script src="js/art/view/item.js" type="application/javascript"></script>
 		<script src="js/art/view/item_label.js" type="application/javascript"></script>
@@ -30,26 +32,24 @@
 				<input class="art art-view-New new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
 			<section class="art art-view-Main main">
-				<p class="mark-as-complete">
-					<input class="art art-view-MarkAllComplete" data-event="MarkAllComplete" id="toggle-all" type="checkbox">
-					<label for="toggle-all">Mark all as complete</label>
-				</p>
-				<ul id="todo-list" class="art art-view-List todo-list" data-template="item" data-item-class="art-view-Item"></ul>
+				<input class="art art-view-MarkAllComplete toggle-all" data-event="MarkAllComplete" id="toggle-all" type="checkbox">
+				<label for="toggle-all">Mark all as complete</label>
+				<ul class="art art-view-List todo-list" data-template="item" data-item-class="art-view-Item" id="todo-list"></ul>
 			</section>
-			<footer class="footer art art-view-Footer">
+			<footer class="art art-view-Footer footer">
 				<span class="art art-view-Count todo-count"><strong>{{n}}</strong> {{pluralize(n, 'item')}} left</span>
 				<ul class="filters">
 					<li>
-						<a href="#/" class="art artjs-Link">All</a>
+						<a href="#/" class="art art-view-Filter">All</a>
 					</li>
 					<li>
-						<a href="#/active" class="art artjs-Link">Active</a>
+						<a href="#/active" class="art art-view-Filter">Active</a>
 					</li>
 					<li>
-						<a href="#/completed" class="art artjs-Link">Completed</a>
+						<a href="#/completed" class="art art-view-Filter">Completed</a>
 					</li>
 				</ul>
-				<button class="clear-completed art art-view-ClearCompleted" data-event="ClearCompleted">Clear completed</button>
+				<button class="art art-view-ClearCompleted clear-completed" data-event="ClearCompleted">Clear completed</button>
 			</footer>
 		</section>
 		<footer class="info">

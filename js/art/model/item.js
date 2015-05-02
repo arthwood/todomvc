@@ -21,5 +21,5 @@ art.model.Item = artjs.Class(
 			return artjs.Array.map(data, this.fromJson, this);
 		}
 	},
-	artjs.ListItemModel
+	artjs.Model
 );

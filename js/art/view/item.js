@@ -8,17 +8,12 @@ art.view.Item = artjs.Class(
 		this._handleEmit('Item::Complete', '_onComplete');
 
 		this._editing = false;
-
-		this._onCompletedChangeDelegate = artjs.$D(this, '_onCompletedChange');
-		this._onVisibleChangeDelegate = artjs.$D(this, '_onVisibleChange');
 	},
 	{
-		setModel: function(model) {
-			this.super(model);
-
-			this._model.addPropertyListener('completed', this._onCompletedChangeDelegate, true);
-			this._model.addPropertyListener('visible', this._onVisibleChangeDelegate);
-		},
+		_onModelChange: function() {
+			artjs.Element.setClass(this._element, this.ctor.COMPLETED_CLASS, this._model.completed);
+			artjs.Element.setVisible(this._element, this._model.visible);
+    },
 
 		_onEdit: function() {
 			if (!this._editing) {
@@ -48,14 +43,6 @@ art.view.Item = artjs.Class(
 
 		_onComplete: function(checkbox) {
 			this._model.completed = checkbox.isChecked();
-		},
-
-		_onCompletedChange: function(data) {
-			artjs.Element.setClass(this._element, this.ctor.COMPLETED_CLASS, data.newValue);
-		},
-
-		_onVisibleChange: function(data) {
-			artjs.Element.setVisible(this._element, data.newValue);
 		}
 	},
 	{
