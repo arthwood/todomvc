@@ -3,7 +3,7 @@ art.view.List = artjs.Class(
 		this.super(element);
 
 		this._localStorage = new artjs.LocalStorage('todos-artjs');
-		this._listWatcher = new art.service.ListWatcher(this);
+		this._listWatcher = new art.service.ListWatcher('todo-list', this);
 		this._model.onItemAdd.add(artjs.$D(this, '_onItemAdd'));
 		this._model.onItemChange.add(artjs.$D(this, '_onItemChange'));
 		artjs.Broadcaster.addListener('Filter', artjs.$D(this, '_onFilter'));

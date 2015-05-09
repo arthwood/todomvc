@@ -13,6 +13,9 @@ art.view.Item = artjs.Class(
 		_onModelChange: function() {
 			artjs.Element.setClass(this._element, this.ctor.COMPLETED_CLASS, this._model.completed);
 			artjs.Element.setVisible(this._element, this._model.visible);
+
+			this._fire('Item::Complete');
+			this._fire('Item::Save');
     },
 
 		_onEdit: function() {

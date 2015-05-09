@@ -1,42 +1,34 @@
 art.service.ListWatcher = artjs.Class(
-	function(updateable) {
+	function(listId, updateable) {
+		this._listId = listId;
 		this._updateable = updateable;
 
-		this._onItemAddDelegate = artjs.$D(this, '_onItemAdd');
-		this._onItemRemoveDelegate = artjs.$D(this, '_onItemRemove');
-		this._onItemChangeDelegate = artjs.$D(this, '_onItemChange');
-		this._onItemsChangeDelegate = artjs.$D(this, '_onItemsChange');
-
-		artjs.Component.onLoad('todo-list', artjs.$D(this, '_onListLoad'));
+		artjs.Component.onLoad(this._listId, artjs.$D(this, '_onListLoad'));
 	},
 	{
+		toString: function() {
+			return this.ctor.toString + ' - listId: ' + this._listId + ', updateable: ' + this._updateable.toString();
+		},
+
 		_onListLoad: function(list) {
+			var onUpdateDelegate = artjs.$D(this, '_onUpdate');
 			this._listModel = list.getModel();
 
-			this._listModel.onItemAdd.add(this._onItemAddDelegate);
-			this._listModel.onItemRemove.add(this._onItemRemoveDelegate);
-			this._listModel.onItemChange.add(this._onItemChangeDelegate);
-			this._listModel.addPropertyListener('items', this._onItemsChangeDelegate, true);
+			this._listModel.onItemAdd.add(onUpdateDelegate);
+			this._listModel.onItemRemove.add(onUpdateDelegate);
+			this._listModel.onItemChange.add(onUpdateDelegate);
+			this._listModel.addPropertyListener('items', onUpdateDelegate, true);
 		},
 
-		_onItemAdd: function() {
-			this._update();
-		},
-
-		_onItemRemove: function() {
-			this._update();
-		},
-
-		_onItemsChange: function() {
-			this._update();
-		},
-
-		_onItemChange: function() {
-			this._update();
-		},
-
-		_update: function() {
+		_onUpdate: function() {
 			this._updateable.update(this._listModel);
+		}
+	},
+	{
+		_name: 'art.service.ListWatcher',
+
+		toString: function() {
+			return this._name;
 		}
 	}
 );

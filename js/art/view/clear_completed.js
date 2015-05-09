@@ -2,13 +2,11 @@ art.view.ClearCompleted = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		this._listWatcher = new art.service.ListWatcher(this);
+		this._listWatcher = new art.service.ListWatcher('todo-list', this);
 	},
 	{
 		update: function(listModel) {
-			var items = listModel.items;
-
-			artjs.Element.setVisible(this._element, artjs.Array.any(artjs.Array.pluck(items, 'completed')));
+			artjs.Element.setVisible(this._element, artjs.Array.any(artjs.Array.pluck(listModel.items, 'completed')));
 		}
 	},
 	{

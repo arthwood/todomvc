@@ -2,7 +2,7 @@ art.view.Footer = artjs.Class(
 	function(element) {
 		this.super(element);
 
-		this._listWatcher = new art.service.ListWatcher(this);
+		this._listWatcher = new art.service.ListWatcher('todo-list', this);
 	},
 	{
 		update: function(listModel) {

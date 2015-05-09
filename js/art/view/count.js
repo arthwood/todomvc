@@ -8,7 +8,7 @@ art.view.Count = artjs.Class(
 
 		this.setModel(model);
 
-		this._listWatcher = new art.service.ListWatcher(this);
+		this._listWatcher = new art.service.ListWatcher('todo-list', this);
 	},
 	{
 		update: function(listModel) {

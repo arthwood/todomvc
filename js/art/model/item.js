@@ -13,12 +13,18 @@ art.model.Item = artjs.Class(
 		}
 	},
 	{
+		_name: 'art.model.Item',
+
 		fromJson: function(data) {
 			return new this(data.title, Boolean(data.completed));
 		},
 
 		fromArray: function(data) {
 			return artjs.Array.map(data, this.fromJson, this);
+		},
+
+		toString: function() {
+			return this._name;
 		}
 	},
 	artjs.Model
