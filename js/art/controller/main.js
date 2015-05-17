@@ -17,3 +17,5 @@ art.controller.Main = artjs.Class(
 		}
 	}
 );
+
+artjs.Router.defaultController = new art.controller.Main();

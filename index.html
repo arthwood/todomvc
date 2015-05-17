@@ -8,6 +8,7 @@
 		<script src="js/art-dev.js" type="application/javascript"></script>
 		<script src="js/init.js" type="application/javascript"></script>
 		<script src="js/art/controller/main.js" type="application/javascript"></script>
+		<script src="js/art/model/filter.js" type="application/javascript"></script>
 		<script src="js/art/model/item.js" type="application/javascript"></script>
 		<script src="js/art/service/db.js" type="application/javascript"></script>
 		<script src="js/art/service/list_watcher.js" type="application/javascript"></script>
@@ -16,6 +17,7 @@
 		<script src="js/art/view/count.js" type="application/javascript"></script>
 		<script src="js/art/view/edit.js" type="application/javascript"></script>
 		<script src="js/art/view/filter.js" type="application/javascript"></script>
+		<script src="js/art/view/filters.js" type="application/javascript"></script>
 		<script src="js/art/view/footer.js" type="application/javascript"></script>
 		<script src="js/art/view/item.js" type="application/javascript"></script>
 		<script src="js/art/view/item_label.js" type="application/javascript"></script>
@@ -38,17 +40,7 @@
 			</section>
 			<footer class="art art-view-Footer footer">
 				<span class="art art-view-Count todo-count"><strong>{{n}}</strong> {{pluralize(n, 'item')}} left</span>
-				<ul class="filters">
-					<li>
-						<a href="#/" class="art art-view-Filter">All</a>
-					</li>
-					<li>
-						<a href="#/active" class="art art-view-Filter">Active</a>
-					</li>
-					<li>
-						<a href="#/completed" class="art art-view-Filter">Completed</a>
-					</li>
-				</ul>
+				<ul class="art art-view-Filters filters" data-template="filter" data-item-class="artjs-TemplateView"></ul>
 				<button class="art art-view-ClearCompleted clear-completed" data-event="ClearCompleted">Clear completed</button>
 			</footer>
 		</section>

@@ -15,13 +15,15 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'js/art-dev.js',
       'js/init.js',
       'js/art/**/*.js',
-      'js/main.js',
-      'spec/**/*.js'
+      'spec/**/*.js',
+      {pattern: 'templates/**/*.html', included: false, served: true, watched: true}
     ],
 
+    proxies: {
+      '/templates': '/templates'
+    },
 
     // list of files to exclude
     exclude: [
