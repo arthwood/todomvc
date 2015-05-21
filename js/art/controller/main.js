@@ -1,8 +1,8 @@
 art.controller.Main = artjs.Class(
 	null,
 	{
-		index: function(id) {
-			artjs.Broadcaster.fire('Filter', id);
+		index: function(request) {
+			artjs.Broadcaster.fire('Filter', request.controllerId);
 		},
 
 		toString: function() {
@@ -15,7 +15,8 @@ art.controller.Main = artjs.Class(
 		toString: function() {
 			return this._name;
 		}
-	}
+	},
+	artjs.Controller
 );
 
 artjs.Router.defaultController = new art.controller.Main();

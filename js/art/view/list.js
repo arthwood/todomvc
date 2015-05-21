@@ -13,7 +13,9 @@ art.view.List = artjs.Class(
 		this._handle('ClearCompleted', '_onClearCompleted');
 		this._handleEmit('Item::Delete', '_onDelete');
 
-		this.setItems(art.model.Item.fromArray(this._localStorage.getItem('items') || art.service.db.items));
+		var items = this._localStorage.getItem('items');
+
+		this.setItems(art.model.Item.fromArray(!items || artjs.Array.isEmpty(items) ? art.service.db.items : items));
 	},
 	{
 		_onNew: function(text) {
