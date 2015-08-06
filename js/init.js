@@ -3,8 +3,8 @@ artjs.TemplateLibrary.config.PATH = 'templates';
 artjs.TemplateLibrary.config.TEMPLATES.push('item', 'filter');
 
 window.art = {
-	controller: {},
-	model: {},
-	service: {},
-	view: {}
+  controller: {},
+  model: {},
+  service: {},
+  view: {}
 };

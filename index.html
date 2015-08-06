@@ -1,34 +1,34 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Template • TodoMVC</title>
-		<link rel="stylesheet" href="css/index.css">
-		<script src="js/bundled/art-min.js" type="application/javascript"></script>
-		<script src="js/bundled/todomvc.js" type="application/javascript"></script>
-	</head>
-	<body>
-		<section class="todoapp">
-			<header class="art art-view-Header header">
-				<h1>todos</h1>
-				<input class="art art-view-New new-todo" placeholder="What needs to be done?" autofocus>
-			</header>
-			<section class="art art-view-Main main">
-				<input class="art art-view-MarkAllComplete toggle-all" data-event="MarkAllComplete" id="toggle-all" type="checkbox">
-				<label for="toggle-all">Mark all as complete</label>
-				<ul class="art art-view-List todo-list" data-template="item" data-item-class="art-view-Item" id="todo-list"></ul>
-			</section>
-			<footer class="art art-view-Footer footer">
-				<span class="art art-view-Count todo-count"><strong>{{n}}</strong> {{pluralize(n, 'item')}} left</span>
-				<ul class="art art-view-Filters filters" data-template="filter" data-item-class="artjs-TemplateView"></ul>
-				<button class="art art-view-ClearCompleted clear-completed" data-event="ClearCompleted">Clear completed</button>
-			</footer>
-		</section>
-		<footer class="info">
-			<p>Double-click to edit a todo</p>
-			<p>Created by <a href="http://artjs.org">ArtJS</a></p>
-			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-		</footer>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template • TodoMVC</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/bundled/art-min.js" type="application/javascript"></script>
+    <script src="js/bundled/todomvc.js" type="application/javascript"></script>
+  </head>
+  <body>
+    <section class="todoapp">
+      <header class="art art-view-Header header">
+        <h1>todos</h1>
+        <input class="art art-view-New new-todo" placeholder="What needs to be done?" autofocus>
+      </header>
+      <section class="art art-view-Main main">
+        <input class="art art-view-MarkAllComplete toggle-all" data-event="MarkAllComplete" id="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="art art-view-List todo-list" data-template="item" data-item-class="art-view-Item" id="todo-list"></ul>
+      </section>
+      <footer class="art art-view-Footer footer">
+        <span class="art art-view-Count todo-count"><strong>{{n}}</strong> {{pluralize(n, 'item')}} left</span>
+        <ul class="art art-view-Filters filters" data-template="filter" data-item-class="artjs-TemplateView"></ul>
+        <button class="art art-view-ClearCompleted clear-completed" data-event="ClearCompleted">Clear completed</button>
+      </footer>
+    </section>
+    <footer class="info">
+      <p>Double-click to edit a todo</p>
+      <p>Created by <a href="http://artjs.org">ArtJS</a></p>
+      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+  </body>
 </html>
