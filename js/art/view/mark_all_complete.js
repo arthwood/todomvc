@@ -5,7 +5,7 @@ art.view.MarkAllComplete = artjs.Class(
     this._listWatcher = new art.service.ListWatcher('todo-list', this);
   },
   {
-    update: function(listModel) {
+    onListUpdate: function(listModel) {
       var pluck = artjs.Array.pluck(listModel.items, 'completed');
 
       this.setChecked(artjs.Array.all(pluck));

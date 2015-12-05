@@ -2,11 +2,11 @@ art.view.Filters = artjs.Class(
   function(element) {
     this.super(element);
 
-    this.setItems([
+    this._model.items = [
       new art.model.Filter('', 'All'),
       new art.model.Filter('active', 'Active'),
       new art.model.Filter('completed', 'Completed')
-    ]);
+    ];
   },
   null,
   {

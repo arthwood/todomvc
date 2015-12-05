@@ -5,7 +5,7 @@ art.view.Main = artjs.Class(
     this._listWatcher = new art.service.ListWatcher('todo-list', this);
   },
   {
-    update: function(listModel) {
+    onListUpdate: function(listModel) {
       artjs.Element.setVisible(this._element, artjs.Array.isNotEmpty(listModel.items));
     }
   },

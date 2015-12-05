@@ -11,7 +11,7 @@ art.view.Count = artjs.Class(
     this._listWatcher = new art.service.ListWatcher('todo-list', this);
   },
   {
-    update: function(listModel) {
+    onListUpdate: function(listModel) {
       var items = listModel.items;
       var total = items.length;
       var completed = artjs.Array.select(artjs.Array.pluck(items, 'completed')).length;
